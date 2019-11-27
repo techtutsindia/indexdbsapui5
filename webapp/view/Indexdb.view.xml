@@ -1,0 +1,88 @@
+<mvc:View controllerName="com.indexdb.sapui5indexdb.controller.Indexdb" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:tnt="sap.tnt" id="myView">
+	<App id="app">
+		<pages>
+			<Page id="page" title="SAPUI5 IndexDB">
+				<content>
+					<VBox class="sapUiSmallMargin">
+						<f:SimpleForm id="SimpleFormToolbar" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="3" labelSpanM="4"
+							labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="4" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="1" columnsM="1"
+							singleContainerFullSize="false" ariaLabelledBy="Title1">
+							<f:toolbar>
+								<Toolbar id="TB1">
+									<Title id="Title1" text="Employee Details" level="H4" titleStyle="H4"/>
+								</Toolbar>
+							</f:toolbar>
+							<f:content>
+								<Label text="EmployeeID"/>
+								<Input id="employeeID" placeholder="Enter Employee ID Here"/>
+								<Label text="FirstName/Grade"/>
+								<Input id="empFirstName"></Input>
+								<Input id="empGrade" placeholder="e.g. IS1">
+									<layoutData>
+										<l:GridData span="XL2 L1 M3 S4"/>
+									</layoutData>
+								</Input>
+								<Label text="ZIP Code/City"/>
+								<Input type="Number" id="empZipCode">
+									<layoutData>
+										<l:GridData span="XL2 L1 M3 S4"/>
+									</layoutData>
+								</Input>
+								<Input id="empCity"/>
+								<Label text="Country"/>
+								<Select id="empCountry" selectedKey="India">
+									<items>
+										<core:Item text="India" key="India"/>
+										<core:Item text="Germany" key="Germany"/>
+										<core:Item text="USA" key="USA"/>
+									</items>
+								</Select>
+								<Button text="Submit" press="writeToIDB"></Button>
+							</f:content>
+						</f:SimpleForm>
+					</VBox>
+					<VBox class="sapUiSmallMargin">
+						<HBox id="oHBox"></HBox>
+						<Table id="idEmployeeDataTable" inset="false" items="{ path: '/ProductCollection', sorter: { path: 'Name' } }">
+							<headerToolbar>
+								<Toolbar id="TB2">
+									<Title id="Title2" text="Data From IndexDB" level="H4" titleStyle="H4"/>
+									<ToolbarSpacer/>
+									<MessageStrip showIcon="true" showCloseButton="true" text="Click on 'Get Data' to load data from IndexDB" type="Warning"/>
+									<Button text="Get Data" tooltip="Retrive data from indexDB" type="Emphasized" press="onPressLoadIndexdbData"></Button>
+								</Toolbar>
+							</headerToolbar>
+							<columns>
+								<Column width="12em">
+									<Text text="EmployeeID"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Text text="Employee Name"/>
+								</Column>
+								<Column minScreenWidth="Desktop" demandPopin="true">
+									<Text text="Grade"/>
+								</Column>
+								<Column minScreenWidth="Desktop" demandPopin="true">
+									<Text text="ZIP Code"/>
+								</Column>
+								<Column>
+									<Text text="City"/>
+								</Column>
+								<Column>
+									<Text text="Country"/>
+								</Column>
+								<Column>
+									<Text text="Action"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem></ColumnListItem>
+							</items>
+						</Table>
+					</VBox>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
